@@ -6,3 +6,8 @@ prefix: QuickShop-Folia
 authors: [Maoyue]
 description: A Folia plugin do same thing with QuickShop
 folia-supported: true
+commands:
+  qs:
+    description: QuickShop main command
+    usage: /qs
+    permission: quickshop.use

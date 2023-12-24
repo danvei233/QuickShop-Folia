@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'xyz.jpenilla.run-paper' version "2.2.2"
 }
 
 group = 'tw.maoyue'
@@ -15,10 +16,12 @@ repositories {
         name = "sonatype"
         url = "https://oss.sonatype.org/content/groups/public/"
     }
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
     compileOnly "dev.folia:folia-api:1.20.2-R0.1-SNAPSHOT"
+    compileOnly "com.github.MilkBowl:VaultAPI:1.7"
 }
 
 def targetJavaVersion = 17
@@ -45,3 +48,15 @@ processResources {
         expand props
     }
 }
+
+tasks {
+    runServer {
+        downloadPlugins {
+            github("YiC200333", "XConomy", "2.25.8", "XConomy-Paper-2.25.8.jar")
+            github("Geolykt", "Vault", "v1.7.3-folia", "vault-folia-1.7.3.jar")
+        }
+        minecraftVersion("1.20.2")
+    }
+}
+
+runPaper.folia.registerTask()
