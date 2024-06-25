@@ -40,8 +40,16 @@ jobs:
 
     # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
     # the publishing section of your build.gradle
-    - name: Publish to GitHub Packages
-      run: ./gradlew publish
+
+    - name: Build project
+      run: ./gradlew build
+
+    - name: Package artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: built-files
+        path: build/libs  # 指定生成文件的路径
+
       env:
         USERNAME: ${{ github.actor }}
         TOKEN: ${{ secrets.GITHUB_TOKEN }}
